@@ -3,6 +3,10 @@ const acorn = require('acorn');
 const fs = require('fs');
 const path = require('path');
 
+
+const dirname = __dirname;
+const CWD = process.cwd();
+
 /**
  *
  * @param options
@@ -68,8 +72,8 @@ StatComment.prototype.parseComments = function parseComments(code) {
 StatComment.prototype.exportReport = function (nodes) {
     var output = '';
     nodes = nodes || this.nodes;
-    var reportPath = this.options.reportPath || path.join(__dirname, 'output/report.html');
-    var tpl = fs.readFileSync('./lib/report.tpl').toString();
+    var reportPath = this.options.reportPath || path.join(CWD, 'output/report.html');
+    var tpl = fs.readFileSync(path.join(dirname, 'lib/report.tpl')).toString();
 
     var filepath = this.filepath || '';
     nodes.forEach(function (node, i) {
@@ -81,7 +85,7 @@ StatComment.prototype.exportReport = function (nodes) {
 };
 
 StatComment.prototype.output = function (filepath) {
-    filepath = filepath || path.join(__dirname, 'output.json');
+    filepath = filepath || path.join(dirname, 'output.json');
     var writeStream = fs.createWriteStream(filepath);
     writeStream.write(JSON.stringify(this.nodes, null, 4));
     writeStream.close();
