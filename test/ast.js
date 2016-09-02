@@ -4,5 +4,5 @@ function stat(a, b) {
 
 }
 
-
-stat('tap'); /*tap event*/
+var varName = 'test'
+stat('tap'+(varName||'')); /*tap event*/

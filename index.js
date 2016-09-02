@@ -21,6 +21,8 @@ function StatComment(options) {
     options = options || {};
     this.options = options;
     this.keyMethod = options.keyMethod || 'stat';
+    this.options.reportPath = options.reportPath || path.join(CWD, 'output/report.html');
+
 }
 
 StatComment.prototype.parse = function (code, filepath) {
@@ -29,7 +31,6 @@ StatComment.prototype.parse = function (code, filepath) {
     var ast = UglifyJS.parse(code);
     var nodes = [];
 
-    this.filepath = filepath || 'N/A';
     ast.walk(new UglifyJS.TreeWalker(function (node) {
         if (node instanceof UglifyJS.AST_Call
             && node.expression.print_to_string() === self.keyMethod
@@ -40,10 +41,17 @@ StatComment.prototype.parse = function (code, filepath) {
                 // node: node,
                 args: [],
                 comment: (comment && comment.value) || 'N/A',
-                line: node.expression.start.line
+                line: node.expression.start.line,
+                filepath: filepath || 'N/A'
             }
             result.args = node.args.map(function (arg) {
-                return arg.value;
+                if (arg.value) {
+                    return arg.value;
+                }
+
+                if (arg.left) {
+                    return arg.left.value + (arg.right ? ('_' + arg.right.print_to_string()) : '');
+                }
             });
             result.name = result.args[0];
             nodes.push(result);
@@ -72,12 +80,11 @@ StatComment.prototype.parseComments = function parseComments(code) {
 StatComment.prototype.exportReport = function (nodes) {
     var output = '';
     nodes = nodes || this.nodes;
-    var reportPath = this.options.reportPath || path.join(CWD, 'output/report.html');
+    var reportPath = this.options.reportPath;
     var tpl = fs.readFileSync(path.join(dirname, 'lib/report.tpl')).toString();
 
-    var filepath = this.filepath || '';
     nodes.forEach(function (node, i) {
-        output += `<tr><th>${i + 1}</th><td>${node.name}</td><td>${node.comment}</td><td>file: ${filepath}<br/>line: ${node.line}</td></tr>`;
+        output += `<tr><th>${i + 1}</th><td>${node.args[0]}</td><td>${node.args[1] || ''}</td><td>${node.comment}</td><td>file: ${node.filepath}<br/>line: ${node.line}</td></tr>`;
     });
 
     output = tpl.replace('<!--content-->', output);
