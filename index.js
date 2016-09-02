@@ -3,6 +3,13 @@ const acorn = require('acorn');
 const fs = require('fs');
 const path = require('path');
 
+/**
+ *
+ * @param options
+ * @param options.reportPath
+ * @returns {StatComment}
+ * @constructor
+ */
 function StatComment(options) {
     if (!(this instanceof StatComment)) {
         return new StatComment(options);
@@ -58,9 +65,10 @@ StatComment.prototype.parseComments = function parseComments(code) {
     return result;
 };
 
-StatComment.prototype.exportReport = function () {
+StatComment.prototype.exportReport = function (nodes) {
     var output = '';
-    var nodes = this.nodes;
+    nodes = nodes || this.nodes;
+    var reportPath = this.options.reportPath || path.join(__dirname, 'output/report.html');
     var tpl = fs.readFileSync('./lib/report.tpl').toString();
 
     var filepath = this.filepath || '';
@@ -69,7 +77,7 @@ StatComment.prototype.exportReport = function () {
     });
 
     output = tpl.replace('<!--content-->', output);
-    fs.writeFileSync('./output/report.html', output);
+    fs.writeFileSync(reportPath, output);
 };
 
 StatComment.prototype.output = function (filepath) {
