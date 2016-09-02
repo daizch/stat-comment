@@ -1,0 +1,19 @@
+[
+    {
+        "args": [
+            "auto.click.stat",
+            "点击事件"
+        ],
+        "comment": "我是注释",
+        "line": 1,
+        "name": "auto.click.stat"
+    },
+    {
+        "args": [
+            "tap"
+        ],
+        "comment": "tap事件",
+        "line": 8,
+        "name": "tap"
+    }
+]

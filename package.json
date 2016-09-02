@@ -1,0 +1,22 @@
+{
+  "name": "stat-comment",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "node ./test/test.js"
+  },
+  "keywords": [
+    "stat",
+    "request",
+    "click",
+    "comment",
+    "uglify"
+  ],
+  "author": "zechengdai",
+  "license": "MIT",
+  "dependencies": {
+    "acorn": "^3.3.0",
+    "uglify-js": "^2.7.3"
+  }
+}
