@@ -1,6 +1,6 @@
 const UglifyJS = require('uglify-js');
 const acorn = require('acorn');
-const fs = require('fs');
+const fs = require('fs-extra');
 const path = require('path');
 
 
@@ -81,6 +81,7 @@ StatComment.prototype.exportReport = function (nodes) {
     });
 
     output = tpl.replace('<!--content-->', output);
+    fs.ensureFileSync(reportPath);
     fs.writeFileSync(reportPath, output);
 };
 
