@@ -22,7 +22,6 @@
         }
 
         table th {
-            vertical-align: bottom;
             padding: 8px;
             border-top: 0;
         }
@@ -31,12 +30,12 @@
             padding: 8px;
             line-height: 1.42857143;
             border-top: 1px solid #ddd;
-            background-color: #06213e;
-            text-align: center;
-            color: white;
+            background-color: #e7ebef;
+            color: #0c0404;
         }
         tbody tr:hover {
             background-color: #0b388a;
+            color: white;
         }
 
         tbody td {
@@ -60,6 +59,11 @@
 <body>
 <div class="report-content">
     <table>
+        <colgroup width="5%"></colgroup>
+        <colgroup width="25%"></colgroup>
+        <colgroup width="15%"></colgroup>
+        <colgroup width="35%"></colgroup>
+        <colgroup width="20%"></colgroup>
         <thead>
         <tr>
             <th>#</th>
