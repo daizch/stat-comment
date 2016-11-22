@@ -40,6 +40,8 @@
 
         tbody td {
             word-break: break-all;
+            padding: 0 3px;
+            border-left: 1px solid #ddd;
         }
         .back-top {
             position: fixed;

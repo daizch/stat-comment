@@ -84,7 +84,7 @@ StatComment.prototype.exportReport = function (nodes) {
     var tpl = fs.readFileSync(path.join(dirname, 'lib/report.tpl')).toString();
 
     nodes.forEach(function (node, i) {
-        output += `<tr><th>${i + 1}</th><td>${node.args[0]}</td><td>${node.args[1] || ''}</td><td>${node.comment}</td><td>file: ${node.filepath}<br/>line: ${node.line}</td></tr>`;
+        output += `<tr><th>${i + 1}</th><td>${node.args[0]}</td><td>${node.args[1] || 'N/A'}</td><td>${node.comment}</td><td>file: ${node.filepath}<br/>line: ${node.line}</td></tr>`;
     });
 
     output = tpl.replace('<!--content-->', output);
