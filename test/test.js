@@ -12,5 +12,3 @@ nodes.forEach(function (node) {
 });
 
 stat.exportReport();
-
-stat.walk('./test/ast.js')

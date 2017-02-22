@@ -22,7 +22,6 @@
         }
 
         table th {
-            vertical-align: bottom;
             padding: 8px;
             border-top: 0;
         }
@@ -31,16 +30,18 @@
             padding: 8px;
             line-height: 1.42857143;
             border-top: 1px solid #ddd;
-            background-color: #06213e;
-            text-align: center;
-            color: white;
+            background-color: #e7ebef;
+            color: #0c0404;
         }
         tbody tr:hover {
             background-color: #0b388a;
+            color: white;
         }
 
         tbody td {
             word-break: break-all;
+            padding: 0 3px;
+            border-left: 1px solid #ddd;
         }
         .back-top {
             position: fixed;
@@ -60,6 +61,11 @@
 <body>
 <div class="report-content">
     <table>
+        <colgroup width="5%"></colgroup>
+        <colgroup width="25%"></colgroup>
+        <colgroup width="15%"></colgroup>
+        <colgroup width="35%"></colgroup>
+        <colgroup width="20%"></colgroup>
         <thead>
         <tr>
             <th>#</th>
@@ -70,7 +76,7 @@
         </tr>
         </thead>
         <tbody>
-            <tr><th>1</th><td>auto.click.stat</td><td>click</td><td>Iamcomment</td><td>file: test/ast.js<br/>line: 1</td></tr><tr><th>2</th><td>tap_varName||""</td><td></td><td>tap event</td><td>file: test/ast.js<br/>line: 8</td></tr>
+            <tr><th>1</th><td>auto.click.stat</td><td>click</td><td>Iamcomment</td><td>file: test/ast.js<br/>line: 1</td></tr><tr><th>2</th><td>tap_varName||""</td><td>N/A</td><td>tap event</td><td>file: test/ast.js<br/>line: 8</td></tr>
         </tbody>
     </table>
 </div>
